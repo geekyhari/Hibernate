@@ -11,7 +11,7 @@ public class Alien {
     @Column(name = "Alien Name")
     private String aname;
     private String tech;
-    @ManyToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Laptop> laptops;
 
     public int getAid() {

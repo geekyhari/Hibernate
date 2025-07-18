@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,18 +49,11 @@ public class Main {
         a2.setAname("Amogh");
         a2.setTech("JS");
 
-        Alien a3 = new Alien();
-        a3.setAid(103);
-        a3.setAname("Harsh");
-        a3.setTech("Python");
 
+        //List.of is used only for one object & Arrays.asList is used for one or more objects
         a1.setLaptops(Arrays.asList(l1,l2));
-        a2.setLaptops(Arrays.asList(l3,l2));
-        a3.setLaptops(Arrays.asList(l1));
+        a2.setLaptops(Arrays.asList(l3));
 
-        l1.setAliens(Arrays.asList(a1,a3));
-        l2.setAliens(Arrays.asList(a1,a2));
-        l3.setAliens(Arrays.asList(a2));
 
         session.persist(l1);
         session.persist(l2);
@@ -67,13 +61,14 @@ public class Main {
 
         session.persist(a1);
         session.persist(a2);
-        session.persist(a3);
 
         transaction.commit();
-        Alien a5 = session.get(Alien.class,102);
-        System.out.println(a5);
-
         session.close();
+        Session session1 = sf.openSession();
+        Alien a5 = session1.get(Alien.class,101);
+//        System.out.println(a5);
+
+        session1.close();
         sf.close();
     }
 }

@@ -1,26 +1,16 @@
 package com.shrihari.Alien;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
+@Cacheable
 public class Laptop {
     @Id
     private int lid;
     private String Brand;
     private String Model;
     private int Ram;
-    @ManyToMany(mappedBy = "laptops")
-    private List<Alien> aliens;
-
-    public List<Alien> getAliens() {
-        return aliens;
-    }
-
-    public void setAliens(List<Alien> aliens) {
-        this.aliens = aliens;
-    }
 
     public int getLid() {
         return lid;
